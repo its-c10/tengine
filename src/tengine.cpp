@@ -29,7 +29,20 @@ void Tengine::setup() {
 		return;
 	}
 
+	std::cout << "SDL video driver: "
+			  << SDL_GetCurrentVideoDriver()
+			  << "\n";
+
+
 	window = SDL_CreateWindow("Tengine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
+
+	int x, y, w, h;
+	SDL_GetWindowPosition(window, &x, &y);
+	SDL_GetWindowSize(window, &w, &h);
+
+	std::cout << "Window position: " << x << ", " << y << "\n";
+	std::cout << "Window size: " << w << "x" << h << "\n";
+	std::cout << "Window flags: " << SDL_GetWindowFlags(window) << "\n";
 
 	if (!window) {
 		std::cout << "SDL window failed to initialize. Eror code: " << SDL_GetError() << "\n";
